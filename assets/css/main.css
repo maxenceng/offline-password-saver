@@ -1,0 +1,128 @@
+/* VARIABLES */
+body {
+  font-family: Overpass;
+  color: whitesmoke; }
+
+::-webkit-scrollbar {
+  display: none; }
+
+/* TOPBAR */
+.app-title {
+  position: fixed;
+  font-size: 2.125em; }
+
+.navbar {
+  -webkit-app-region: drag;
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding: 0.3125em;
+  width: 100%;
+  background-color: #3D3E3F;
+  z-index: 2000; }
+
+nav {
+  margin-right: 1em; }
+
+.navbar span {
+  -webkit-app-region: no-drag;
+  margin-right: 0.15625em;
+  cursor: pointer; }
+
+.navbar span:hover {
+  color: #FFA500; }
+
+/* MENU */
+.menu {
+  margin: 5em auto 0 auto;
+  width: 90%; }
+
+.menu ul {
+  list-style-type: none;
+  background-color: #3D3E3F;
+  display: table;
+  width: 100%;
+  border-radius: 0.125em; }
+
+.menu ul li {
+  display: table-cell; }
+
+.menu ul li.active {
+  background-color: #3498DB;
+  border-radius: 0.125em; }
+
+.menu li a {
+  display: block;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  font-size: 1.725em;
+  color: whitesmoke; }
+
+.menu li a:hover {
+  background-color: #FFA500;
+  border-radius: 0.125em; }
+
+/* CONTENT PARAMETERS */
+input,
+select {
+  width: 15em; }
+
+.button-primary {
+  width: 18em; }
+
+.key {
+  cursor: pointer;
+  margin: 0; }
+
+.pass-show-hide {
+  display: flex;
+  justify-content: center;
+  height: 50%;
+  color: #FFA500; }
+
+.pass-show-hide a {
+  cursor: pointer; }
+
+.pass-info {
+  margin-right: 1em; }
+
+button i {
+  padding-right: 2em; }
+
+label {
+  text-align: center; }
+
+.control-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem; }
+
+.row,
+.menu {
+  transition: all 0.5s ease; }
+
+.column,
+.columns {
+  text-align: center;
+  font-size: 1.25em; }
+
+.four {
+  min-width: 14em; }
+
+.dynamic {
+  height: 4.375em;
+  max-width: 13.125em;
+  margin-left: 0; }
+
+@media (max-width: 34.375em) {
+  .dynamic {
+    max-width: none; } }
+
+@media (min-width: 108em) {
+  .data,
+  .control {
+    font-size: 135%; }
+  .row {
+    font-size: 135%; }
+  .menu {
+    font-size: 120%; } }

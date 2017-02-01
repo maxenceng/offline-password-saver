@@ -1,0 +1,44 @@
+{
+  "name": "PassStore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "pkg-win": "electron-packager ./build app --icon build/assets/icons/Logo.ico",
+    "asar-win": "asar pack app-win32-x64/resources/app app.asar --unpack-dir \"store\"",
+    "mv-asar-win": "mv app.asar app-win32-x64/resources/ && mv app.asar.unpacked/ app-win32-x64/resources/ && rm -rf app-win32-x64/resources/app",
+    "build": "gulp minify && gulp build && gulp prune",
+    "rebuild": "gulp minify && gulp rm-build && gulp build && gulp prune",
+    "pkg-total-win": "npm run build && npm run pkg-win && npm run asar-win && npm run mv-asar-win",
+    "repkg-win": "rm -rf app-win32-x64 && npm run rebuild && npm run pkg-total-win",
+    "pkg-linux": "electron-packager ./build app",
+    "asar-linux": "asar pack app-linux-x64/resources/app app.asar --unpack-dir \"store\"",
+    "mv-asar-linux": "mv app.asar app-linux-x64/resources/ && mv app.asar.unpacked/ app-linux-x64/resources/ && rm -rf app-linux-x64/resources/app",
+    "pkg-total-linux": "npm run build && npm run pkg-linux && npm run asar-linux && npm run mv-asar-linux",
+    "repkg-linux": "rm -rf app-linux-x64 && npm run rebuild && npm run pkg-total-linux",
+    "tarball": "tar -zcvf tarball-ops_v0.1.tar.gz app-linux-x64/"
+
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "crypto-js": "^3.1.9-1",
+    "randomstring": "^1.1.5",
+    "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "babel-preset-env": "^1.1.8",
+    "electron": "^1.4.14",
+    "gulp": "^3.9.1",
+    "gulp-babel": "^6.1.2",
+    "gulp-clean-css": "^2.3.2",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^2.0.0",
+    "pump": "^1.0.2"
+  }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="store">
+    <head>
+        <meta charset="UTF-8">
+        <link href="https://fonts.googleapis.com/css?family=Overpass" rel="stylesheet">
+        <link rel="stylesheet" href="../assets/css.min/skeleton.min.css">
+        <link rel="stylesheet" href="../assets/css.min/main.min.css">
+        <link rel="stylesheet" href="../assets/css/font-awesome.min.css">
+        <title>Offline Password Saver</title>
+    </head>
+    <body ng-controller="StoreController as store">
+
+        <div class="navbar">
+            <h1 class="app-title u-pull-left">Offline Password Saver</h1>
+            <nav class="u-pull-right">
+                <a id="min-btn"><span class="fa fa-window-minimize fa-2x" aria-hidden="true"></span></a>
+                <a id="resize-btn"><span class="fa fa-window-maximize fa-2x" aria-hidden="true"></span></a>
+                <a id="close-btn"><span class="fa fa-window-close fa-2x" aria-hidden="true"></span></a>
+            </nav>
+        </div>
+        <div class="menu">
+            <ul>
+                <li ng-class="{ active: store.passwords }"><a ng-click="store.showPasswords()">Passwords List</a></li>
+                <li ng-class="{ active: !store.passwords }"><a ng-click="store.showControls()">Control Options</a></li>
+            </ul>
+        </div>
+        <div class="row" ng-show="store.passwords">
+            <div class="five columns dynamic" ng-repeat="(key, value) in store.dataJSON.password">
+                <p class="key" ng-click="store.show(key)">{{ key }}</p>
+                <div class="pass-show-hide">
+                    <p class="pass-info" ng-show="store.dataJSON.show[key]">{{ value }}</p>
+                    <a ng-show="store.dataJSON.show[key]" ng-click="store.hide(key)">Hide</a>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-show="!store.passwords">
+            <div class="four columns">
+                <div>
+                    <label for="input-app">APP</label>
+                    <input type="text" id="input-app" maxlength="15">
+                </div>
+                <div>
+                    <label for="input-pass">PASSWORD</label>
+                    <input type="text" id="input-pass" maxlength="15">
+                </div>
+                <button class="button-primary" id="add-btn" ng-click="store.reload()"><i class="fa fa-plus" aria-hidden="true"></i>ADD</button>
+            </div>
+            <div class="four columns">
+                <div>
+                    <p class="control-title">DELETE</p>
+                    <select id="delete-select" ng-model="selected" ng-options="x for x in store.selection"></select>
+                </div>
+                <button class="button-primary" ng-click="store.reload()" id="delete-btn"><i class="fa fa-trash" aria-hidden="true"></i>DELETE</button>
+            </div>
+            <div class="four columns">
+                <p class="control-title">RANDOM PASSWORD</p>
+                <button class="button-primary" id="gen-btn">GENERATE</button>
+                <p id="gen-pass"></p>
+                <button class="button-primary" id="clip-btn" data-clipboard-target="#gen-pass">COPY</button>
+            </div>
+        </div>
+    </body>
+    <script>
+        require('./../render')
+    </script>
+    <script src="../assets/js.min/clipboard.min.js"></script>
+    <script src="../assets/js.min/crypto-js.min.js"></script>
+    <script src="../assets/js.min/angular.min.js"></script>
+    <script src="../assets/js.min/app.min.js"></script>
+    <script>let btn = document.getElementById('clip-btn');let clipboard = new Clipboard(btn);</script>
+</html>
